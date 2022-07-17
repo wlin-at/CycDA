@@ -1,0 +1,437 @@
+2022-02-15 21:26:08,824 - mmaction - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.6.13 |Anaconda, Inc.| (default, Jun  4 2021, 14:25:59) [GCC 7.5.0]
+CUDA available: True
+GPU 0: NVIDIA GeForce RTX 2080 Ti
+GPU 1: NVIDIA GeForce GT 1030
+CUDA_HOME: /usr/local/cuda
+NVCC: Cuda compilation tools, release 10.0, V10.0.130
+GCC: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+PyTorch: 1.7.1
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.2 Product Build 20200624 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v1.6.0 (Git Hash 5ef631a030a6f73131c77892041042805a06064f)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 10.1
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 7.6.3
+  - Magma 2.5.2
+  - Build settings: BLAS=MKL, BUILD_TYPE=Release, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DUSE_VULKAN_WRAPPER -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, USE_CUDA=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+TorchVision: 0.8.2
+OpenCV: 3.4.0
+MMCV: 1.4.0
+MMCV Compiler: n/a
+MMCV CUDA Compiler: n/a
+MMAction2: 0.20.0+2b6f9ac
+------------------------------------------------------------
+
+2022-02-15 21:26:08,825 - mmaction - INFO - Distributed training: False
+2022-02-15 21:26:12,213 - mmaction - INFO - Config: model = dict(
+    type='RecognizerI3dDA',
+    backbone=dict(
+        type='C3D',
+        pretrained=
+        '/media/data_8T/mmaction2_checkpoints/C3D/c3d_sports1m_16x1x1_45e_ucf101_rgb_20201021-26655025.pth',
+        style='pytorch',
+        conv_cfg=dict(type='Conv3d'),
+        norm_cfg=None,
+        act_cfg=dict(type='ReLU'),
+        dropout_ratio=0.5,
+        init_std=0.005),
+    cls_head=None,
+    train_cfg=None,
+    test_cfg=dict(average_clips='prob'),
+    neck=None,
+    spatial_type='avg',
+    spatial_dropout_ratio=0.5,
+    feat_dim=4096,
+    n_class=13,
+    init_std=0.01,
+    embed_dim_t=64,
+    d_clsfr_mlp_dim=64,
+    clsfr_mlp_dim=64)
+optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer_config = dict(grad_clip=dict(max_norm=40, norm_type=2))
+lr_config = dict(policy='step', step=[40, 80])
+total_epochs = 20
+checkpoint_config = dict(interval=-1, save_last=True)
+log_config = dict(
+    interval=20,
+    hooks=[dict(type='TextLoggerHook'),
+           dict(type='TensorboardLoggerHook')])
+dist_params = dict(backend='nccl')
+log_level = 'DEBUG'
+load_from = None
+resume_from = None
+workflow = [('train', 1)]
+env_id = 0
+val_frequency = 2
+data_dir = '/media/data_8T'
+debug = False
+source_to_target = 'e2h'
+split_nr = 1
+n_class = 13
+optimizer_cfg = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=1e-07)
+paramwise_cfg = dict(
+    custom_keys=dict(backbone=dict(lr_mult=0.1, decay_mult=1.0)))
+num_clips = 4
+num_clips_val = 3
+num_clips_test = 3
+clip_len = 16
+frame_interval = 1
+save_last = True
+save_best = False
+videos_per_gpu = 2
+workers_per_gpu = 0
+videos_per_gpu_val_dataloader = 2
+videos_per_gpu_test_dataloader = 1
+custom_hooks = [dict(type='PseudoTargetHook', priority='NORMAL')]
+beta_high = 0.1
+ps_thresh = 0.7
+ps_filter_by = 'frame_v2'
+pseudo_gt_dict = '/media/data_8T/UCF-HMDB/ablation_incepi3d/img2vid/e2h/split1/step1_grl_tsn_img_model_64d/v7/20220210_135354_frame_ps.npy'
+log_str = 'clip4x16_w_ps_img0.7_strid1_testclip3'
+pretrained_model_path = '/media/data_8T/mmaction2_checkpoints/C3D/c3d_sports1m_16x1x1_45e_ucf101_rgb_20201021-26655025.pth'
+embed_dim = 64
+DA_config = dict(
+    batch_size=2,
+    model_type='RecognizerI3dDA',
+    source_to_target='e2h',
+    experiment_type='DA',
+    dataload_iter='min',
+    use_target='uSv',
+    test_domain_label=1,
+    weight_clip_clspred=0,
+    weight_clip_clspred_vid_ps=1,
+    n_clips=4,
+    adv_DA=False,
+    w_pseudo='img',
+    ps_filter_by='frame_v2',
+    pseudo_gt_dict=
+    '/media/data_8T/UCF-HMDB/ablation_incepi3d/img2vid/e2h/split1/step1_grl_tsn_img_model_64d/v7/20220210_135354_frame_ps.npy',
+    ps_thresh=0.7,
+    update_ps_start_epoch=-1,
+    update_ps_freq=-1,
+    target_train_vid_info=None,
+    exp_DA_name='DA',
+    source_train_list='/media/data_8T/UCF-HMDB/E2H/list_hmdb_train_split1.txt',
+    target_train_list='/media/data_8T/UCF-HMDB/E2H/list_hmdb_train_split1.txt',
+    val_list='/media/data_8T/UCF-HMDB/E2H/list_hmdb_val_split1.txt',
+    test_list='/media/data_8T/UCF-HMDB/E2H/list_hmdb_val_split1.txt')
+dataset_type = 'MyVideoDataset'
+img_norm_cfg = dict(mean=[104, 117, 128], std=[1, 1, 1], to_bgr=False)
+train_pipeline = [
+    dict(type='DecordInit'),
+    dict(type='SampleFrames', clip_len=16, frame_interval=1, num_clips=4),
+    dict(type='DecordDecode'),
+    dict(type='Resize', scale=(-1, 120)),
+    dict(
+        type='MultiScaleCrop',
+        input_size=112,
+        scales=(1, 0.8),
+        random_crop=True,
+        max_wh_scale_gap=1),
+    dict(type='Resize', scale=(112, 112), keep_ratio=False),
+    dict(type='Flip', flip_ratio=0.5),
+    dict(type='Normalize', mean=[104, 117, 128], std=[1, 1, 1], to_bgr=False),
+    dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    dict(type='ToTensor', keys=['imgs', 'label'])
+]
+val_pipeline = [
+    dict(type='DecordInit'),
+    dict(
+        type='SampleFrames',
+        clip_len=16,
+        frame_interval=1,
+        num_clips=3,
+        test_mode=True),
+    dict(type='DecordDecode'),
+    dict(type='Resize', scale=(-1, 120)),
+    dict(type='CenterCrop', crop_size=112),
+    dict(type='Normalize', mean=[104, 117, 128], std=[1, 1, 1], to_bgr=False),
+    dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    dict(type='ToTensor', keys=['imgs'])
+]
+test_pipeline = [
+    dict(type='DecordInit'),
+    dict(
+        type='SampleFrames',
+        clip_len=16,
+        frame_interval=1,
+        num_clips=3,
+        test_mode=True),
+    dict(type='DecordDecode'),
+    dict(type='Resize', scale=(-1, 120)),
+    dict(type='CenterCrop', crop_size=112),
+    dict(type='Normalize', mean=[104, 117, 128], std=[1, 1, 1], to_bgr=False),
+    dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    dict(type='ToTensor', keys=['imgs'])
+]
+evaluation = dict(
+    interval=2,
+    save_best=None,
+    metrics=['top_k_accuracy', 'mean_class_accuracy'])
+work_main_dir = './work_dirs/'
+find_unused_parameters = True
+work_dir = './work_dirs/C3D_e2h_DA_clip4x16_w_ps_img0.7_strid1_testclip3'
+data = dict(
+    videos_per_gpu=2,
+    workers_per_gpu=0,
+    val_dataloader=dict(videos_per_gpu=2),
+    test_dataloader=dict(videos_per_gpu=1),
+    source_train=dict(
+        type='MyVideoDataset',
+        ann_file='/media/data_8T/UCF-HMDB/E2H/list_hmdb_train_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=16,
+                frame_interval=1,
+                num_clips=4),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 120)),
+            dict(
+                type='MultiScaleCrop',
+                input_size=112,
+                scales=(1, 0.8),
+                random_crop=True,
+                max_wh_scale_gap=1),
+            dict(type='Resize', scale=(112, 112), keep_ratio=False),
+            dict(type='Flip', flip_ratio=0.5),
+            dict(
+                type='Normalize',
+                mean=[104, 117, 128],
+                std=[1, 1, 1],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs', 'label'])
+        ]),
+    target_train=dict(
+        type='MyVideoDataset',
+        ann_file='/media/data_8T/UCF-HMDB/E2H/list_hmdb_train_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=16,
+                frame_interval=1,
+                num_clips=4),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 120)),
+            dict(
+                type='MultiScaleCrop',
+                input_size=112,
+                scales=(1, 0.8),
+                random_crop=True,
+                max_wh_scale_gap=1),
+            dict(type='Resize', scale=(112, 112), keep_ratio=False),
+            dict(type='Flip', flip_ratio=0.5),
+            dict(
+                type='Normalize',
+                mean=[104, 117, 128],
+                std=[1, 1, 1],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs', 'label'])
+        ],
+        w_pseudo='img',
+        ps_filter_by='frame_v2',
+        pseudo_gt_dict=
+        '/media/data_8T/UCF-HMDB/ablation_incepi3d/img2vid/e2h/split1/step1_grl_tsn_img_model_64d/v7/20220210_135354_frame_ps.npy',
+        ps_thresh=0.7,
+        data_dir='/media/data_8T'),
+    val=dict(
+        type='MyVideoDataset',
+        ann_file='/media/data_8T/UCF-HMDB/E2H/list_hmdb_val_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=16,
+                frame_interval=1,
+                num_clips=3,
+                test_mode=True),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 120)),
+            dict(type='CenterCrop', crop_size=112),
+            dict(
+                type='Normalize',
+                mean=[104, 117, 128],
+                std=[1, 1, 1],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs'])
+        ]),
+    test=dict(
+        type='MyVideoDataset',
+        ann_file='/media/data_8T/UCF-HMDB/E2H/list_hmdb_val_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=16,
+                frame_interval=1,
+                num_clips=3,
+                test_mode=True),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 120)),
+            dict(type='CenterCrop', crop_size=112),
+            dict(
+                type='Normalize',
+                mean=[104, 117, 128],
+                std=[1, 1, 1],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs'])
+        ]),
+    target_train_for_inference=dict(
+        type='MyVideoDataset',
+        ann_file='/media/data_8T/UCF-HMDB/E2H/list_hmdb_train_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=16,
+                frame_interval=1,
+                num_clips=3,
+                test_mode=True),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 120)),
+            dict(type='CenterCrop', crop_size=112),
+            dict(
+                type='Normalize',
+                mean=[104, 117, 128],
+                std=[1, 1, 1],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs'])
+        ]))
+gpu_ids = [0]
+omnisource = False
+module_hooks = []
+
+2022-02-15 21:26:13,482 - mmaction - INFO - load model from: /media/data_8T/mmaction2_checkpoints/C3D/c3d_sports1m_16x1x1_45e_ucf101_rgb_20201021-26655025.pth
+2022-02-15 21:26:13,482 - mmaction - INFO - load checkpoint from local path: /media/data_8T/mmaction2_checkpoints/C3D/c3d_sports1m_16x1x1_45e_ucf101_rgb_20201021-26655025.pth
+2022-02-15 21:26:18,339 - mmaction - WARNING - The model and loaded state dict do not match exactly
+
+unexpected key in source state_dict: backbone.conv1a.conv.weight, backbone.conv1a.conv.bias, backbone.conv2a.conv.weight, backbone.conv2a.conv.bias, backbone.conv3a.conv.weight, backbone.conv3a.conv.bias, backbone.conv3b.conv.weight, backbone.conv3b.conv.bias, backbone.conv4a.conv.weight, backbone.conv4a.conv.bias, backbone.conv4b.conv.weight, backbone.conv4b.conv.bias, backbone.conv5a.conv.weight, backbone.conv5a.conv.bias, backbone.conv5b.conv.weight, backbone.conv5b.conv.bias, backbone.fc6.weight, backbone.fc6.bias, backbone.fc7.weight, backbone.fc7.bias, cls_head.fc_cls.weight, cls_head.fc_cls.bias
+
+missing keys in source state_dict: conv1a.conv.weight, conv1a.conv.bias, conv2a.conv.weight, conv2a.conv.bias, conv3a.conv.weight, conv3a.conv.bias, conv3b.conv.weight, conv3b.conv.bias, conv4a.conv.weight, conv4a.conv.bias, conv4b.conv.weight, conv4b.conv.bias, conv5a.conv.weight, conv5a.conv.bias, conv5b.conv.weight, conv5b.conv.bias, fc6.weight, fc6.bias, fc7.weight, fc7.bias
+
+2022-02-15 21:26:18,358 - mmaction - DEBUG - #################################################
+2022-02-15 21:26:18,359 - mmaction - DEBUG - Number of trainable parameters: 78267279
+2022-02-15 21:26:18,359 - mmaction - DEBUG - #################################################
+2022-02-15 21:26:24,844 - mmaction - DEBUG - Paramwise optimizer set up...
+2022-02-15 21:27:04,705 - mmaction - INFO - Start running, host: eicg@eicg, work_dir: /home/eicg/action_recognition_codes/domain_adaptation/mmaction2/tools/utils/work_dirs/C3D_e2h_DA_clip4x16_w_ps_img0.7_strid1_testclip3
+2022-02-15 21:27:04,706 - mmaction - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) PseudoTargetHook                   
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_val_iter:
+(NORMAL      ) PseudoTargetHook                   
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) PseudoTargetHook                   
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(NORMAL      ) PseudoTargetHook                   
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+after_run:
+(NORMAL      ) PseudoTargetHook                   
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+2022-02-15 21:27:04,707 - mmaction - INFO - workflow: [('train', 1)], max: 20 epochs
+2022-02-15 21:27:04,707 - mmaction - INFO - Checkpoints will be saved to /home/eicg/action_recognition_codes/domain_adaptation/mmaction2/tools/utils/work_dirs/C3D_e2h_DA_clip4x16_w_ps_img0.7_strid1_testclip3 by HardDiskBackend.
+2022-02-15 21:27:05,254 - mmaction - DEBUG - Epoch begin class 0: #frames 5475.0, acc 0.294
+2022-02-15 21:27:05,255 - mmaction - DEBUG - Epoch begin class 1: #frames 10291.0, acc 0.851
+2022-02-15 21:27:05,255 - mmaction - DEBUG - Epoch begin class 2: #frames 6260.0, acc 0.238
+2022-02-15 21:27:05,255 - mmaction - DEBUG - Epoch begin class 3: #frames 5491.0, acc 0.120
+2022-02-15 21:27:05,255 - mmaction - DEBUG - Epoch begin class 4: #frames 3550.0, acc 0.285
+2022-02-15 21:27:05,256 - mmaction - DEBUG - Epoch begin class 5: #frames 3224.0, acc 0.163
+2022-02-15 21:27:05,256 - mmaction - DEBUG - Epoch begin class 6: #frames 11544.0, acc 0.483
+2022-02-15 21:27:05,256 - mmaction - DEBUG - Epoch begin class 7: #frames 11705.0, acc 0.737
+2022-02-15 21:27:05,256 - mmaction - DEBUG - Epoch begin class 8: #frames 6428.0, acc 0.481
+2022-02-15 21:27:05,257 - mmaction - DEBUG - Epoch begin class 9: #frames 4763.0, acc 0.100
+2022-02-15 21:27:05,257 - mmaction - DEBUG - Epoch begin class 10: #frames 10465.0, acc 0.604
+2022-02-15 21:27:05,257 - mmaction - DEBUG - Epoch begin class 11: #frames 10565.0, acc 0.027
+2022-02-15 21:27:05,257 - mmaction - DEBUG - Epoch begin class 12: #frames 5681.0, acc 0.435
+2022-02-15 21:27:05,257 - mmaction - DEBUG - Total:
+2022-02-15 21:27:05,258 - mmaction - DEBUG - Epoch begin Total : #frames 95442.0/100% , acc 0.429
+2022-02-15 21:27:05,340 - mmaction - DEBUG - Frame Thresh 0.00 (100.0%) : #frames 95442/100.00% , acc frame 0.429	 #vids 910/100.00%, acc vid 0.399
+2022-02-15 21:27:05,412 - mmaction - DEBUG - Frame Thresh 0.80 (90.0%) : #frames 41512/43.49% , acc frame 0.715	 #vids 819/90.00%, acc vid 0.453
+2022-02-15 21:27:05,481 - mmaction - DEBUG - Frame Thresh 0.89 (80.0%) : #frames 33667/35.27% , acc frame 0.791	 #vids 728/80.00%, acc vid 0.496
+2022-02-15 21:27:05,543 - mmaction - DEBUG - Frame Thresh 0.93 (70.0%) : #frames 28962/30.35% , acc frame 0.839	 #vids 637/70.00%, acc vid 0.545
+2022-02-15 21:27:05,590 - mmaction - DEBUG - Frame Thresh 0.96 (60.0%) : #frames 25250/26.46% , acc frame 0.875	 #vids 546/60.00%, acc vid 0.588
+2022-02-15 21:27:05,639 - mmaction - DEBUG - Frame Thresh 0.98 (50.0%) : #frames 21736/22.77% , acc frame 0.901	 #vids 455/50.00%, acc vid 0.644
+2022-02-15 21:27:05,683 - mmaction - DEBUG - Frame Thresh 0.99 (40.0%) : #frames 18370/19.25% , acc frame 0.930	 #vids 364/40.00%, acc vid 0.706
+2022-02-15 21:27:05,714 - mmaction - DEBUG - Frame Thresh 1.00 (30.0%) : #frames 13536/14.18% , acc frame 0.955	 #vids 273/30.00%, acc vid 0.788
+2022-02-15 21:27:05,744 - mmaction - DEBUG - Frame Thresh 1.00 (20.0%) : #frames 9971/10.45% , acc frame 0.974	 #vids 182/20.00%, acc vid 0.852
+2022-02-15 21:27:05,771 - mmaction - DEBUG - Frame Thresh 1.00 (10.0%) : #frames 5264/5.52% , acc frame 0.977	 #vids 91/10.00%, acc vid 0.945
+2022-02-15 21:27:05,895 - mmaction - DEBUG - Chosen Frame Thresh 0.93 (70.0%) : #frames 28962/30.35% , acc frame 0.839	 #vids 637/70.00%, acc vid 0.545
+2022-02-15 21:27:05,895 - mmaction - INFO - Before run: target train dataloader initialized! 

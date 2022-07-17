@@ -1,0 +1,396 @@
+2022-02-05 12:41:12,848 - mmaction - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.6.13 |Anaconda, Inc.| (default, Jun  4 2021, 14:25:59) [GCC 7.5.0]
+CUDA available: True
+GPU 0: NVIDIA GeForce RTX 2080 Ti
+GPU 1: NVIDIA GeForce GT 1030
+CUDA_HOME: /usr/local/cuda
+NVCC: Cuda compilation tools, release 10.0, V10.0.130
+GCC: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+PyTorch: 1.7.1
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.2 Product Build 20200624 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v1.6.0 (Git Hash 5ef631a030a6f73131c77892041042805a06064f)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 10.1
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 7.6.3
+  - Magma 2.5.2
+  - Build settings: BLAS=MKL, BUILD_TYPE=Release, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DUSE_VULKAN_WRAPPER -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, USE_CUDA=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+TorchVision: 0.8.2
+OpenCV: 3.4.0
+MMCV: 1.4.0
+MMCV Compiler: n/a
+MMCV CUDA Compiler: n/a
+MMAction2: 0.20.0+2b6f9ac
+------------------------------------------------------------
+
+2022-02-05 12:41:12,849 - mmaction - INFO - Distributed training: False
+2022-02-05 12:41:19,811 - mmaction - INFO - Config: model = dict(
+    type='RecognizerI3dDA',
+    backbone=dict(
+        type='InceptionI3d',
+        pretrained2d=True,
+        pretrained='torchvision://resnet50',
+        depth=50,
+        conv1_kernel=(5, 7, 7),
+        conv1_stride_t=2,
+        pool1_stride_t=2,
+        conv_cfg=dict(type='Conv3d'),
+        norm_eval=False,
+        inflate=((1, 1, 1), (1, 0, 1, 0), (1, 0, 1, 0, 1, 0), (0, 1, 0)),
+        zero_init_residual=False,
+        pretrained_model_path=
+        '/media/data_8T/mmaction2_checkpoints/InceptionI3d/rgb_imagenet.pt'),
+    cls_head=None,
+    train_cfg=None,
+    test_cfg=dict(average_clips='prob'),
+    neck=None,
+    spatial_type='avg',
+    spatial_dropout_ratio=0.5,
+    feat_dim=1024,
+    n_class=101,
+    init_std=0.01,
+    embed_dim_t=128,
+    d_clsfr_mlp_dim=128,
+    clsfr_mlp_dim=128)
+optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer_config = dict(grad_clip=dict(max_norm=40, norm_type=2))
+lr_config = dict(policy='step', step=[40, 80])
+total_epochs = 5
+checkpoint_config = dict(interval=-1, save_last=False)
+log_config = dict(
+    interval=20,
+    hooks=[dict(type='TextLoggerHook'),
+           dict(type='TensorboardLoggerHook')])
+dist_params = dict(backend='nccl')
+log_level = 'DEBUG'
+load_from = None
+resume_from = None
+workflow = [('train', 1)]
+env_id = 0
+val_frequency = 5
+data_dir = '/media/data_8T'
+debug = False
+optimizer_cfg = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=1e-07)
+paramwise_cfg = dict(
+    custom_keys=dict(backbone=dict(lr_mult=0.1, decay_mult=1.0)))
+num_clips = 1
+num_clips_val = 1
+num_clips_test = 1
+clip_len = 64
+frame_interval = 1
+save_last = False
+save_best = False
+videos_per_gpu = 1
+workers_per_gpu = 0
+videos_per_gpu_val_dataloader = 2
+videos_per_gpu_test_dataloader = 1
+custom_hooks = [dict(type='PseudoTargetHook', priority='NORMAL')]
+beta_high = 0.1
+log_str = 'clip1x64_strid1_testclip1'
+pretrained_model_path = '/media/data_8T/mmaction2_checkpoints/InceptionI3d/rgb_imagenet.pt'
+DA_config = dict(
+    batch_size=1,
+    model_type='RecognizerI3dDA',
+    source_to_target='2ucf_all',
+    split_nr=1,
+    experiment_type='target_only',
+    dataload_iter='max',
+    use_target='none',
+    test_domain_label=0,
+    weight_clip_clspred=1,
+    n_clips=1,
+    adv_DA=False,
+    w_pseudo=False,
+    ps_filter_by=None,
+    pseudo_gt_dict=None,
+    ps_thresh=None,
+    update_ps_start_epoch=-1,
+    update_ps_freq=-1,
+    target_train_vid_info=None,
+    exp_DA_name='baseline',
+    source_train_list=
+    '/media/data_8T/UCF-HMDB/UCF-HMDB_all/splits/list_ucf_all_train_split1.txt',
+    target_train_list=
+    '/media/data_8T/UCF-HMDB/UCF-HMDB_all/splits/list_ucf_all_train_split1.txt',
+    val_list=
+    '/media/data_8T/UCF-HMDB/UCF-HMDB_all/splits/list_ucf_all_val_split1.txt',
+    test_list=
+    '/media/data_8T/UCF-HMDB/UCF-HMDB_all/splits/list_ucf_all_val_split1.txt')
+dataset_type = 'MyVideoDataset'
+img_norm_cfg = dict(
+    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_bgr=False)
+train_pipeline = [
+    dict(type='DecordInit'),
+    dict(type='SampleFrames', clip_len=64, frame_interval=1, num_clips=1),
+    dict(type='DecordDecode'),
+    dict(type='Resize', scale=(-1, 256)),
+    dict(
+        type='MultiScaleCrop',
+        input_size=224,
+        scales=(1, 0.8),
+        random_crop=True,
+        max_wh_scale_gap=1),
+    dict(type='Resize', scale=(224, 224), keep_ratio=False),
+    dict(type='Flip', flip_ratio=0.5),
+    dict(
+        type='Normalize',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        to_bgr=False),
+    dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    dict(type='ToTensor', keys=['imgs', 'label'])
+]
+val_pipeline = [
+    dict(type='DecordInit'),
+    dict(
+        type='SampleFrames',
+        clip_len=64,
+        frame_interval=1,
+        num_clips=1,
+        test_mode=True),
+    dict(type='DecordDecode'),
+    dict(type='Resize', scale=(-1, 256)),
+    dict(type='CenterCrop', crop_size=224),
+    dict(
+        type='Normalize',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        to_bgr=False),
+    dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    dict(type='ToTensor', keys=['imgs'])
+]
+test_pipeline = [
+    dict(type='DecordInit'),
+    dict(
+        type='SampleFrames',
+        clip_len=64,
+        frame_interval=1,
+        num_clips=1,
+        test_mode=True),
+    dict(type='DecordDecode'),
+    dict(type='Resize', scale=(-1, 256)),
+    dict(type='CenterCrop', crop_size=224),
+    dict(
+        type='Normalize',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        to_bgr=False),
+    dict(type='FormatShape', input_format='NCTHW'),
+    dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+    dict(type='ToTensor', keys=['imgs'])
+]
+evaluation = dict(
+    interval=5,
+    save_best=None,
+    metrics=['top_k_accuracy', 'mean_class_accuracy'])
+work_main_dir = './work_dirs/'
+find_unused_parameters = True
+work_dir = './work_dirs/InceptionI3d_2ucf_all_target_only_clip1x64_strid1_testclip1'
+data = dict(
+    videos_per_gpu=1,
+    workers_per_gpu=0,
+    val_dataloader=dict(videos_per_gpu=2),
+    test_dataloader=dict(videos_per_gpu=1),
+    source_train=dict(
+        type='MyVideoDataset',
+        ann_file=
+        '/media/data_8T/UCF-HMDB/UCF-HMDB_all/splits/list_ucf_all_train_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=64,
+                frame_interval=1,
+                num_clips=1),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 256)),
+            dict(
+                type='MultiScaleCrop',
+                input_size=224,
+                scales=(1, 0.8),
+                random_crop=True,
+                max_wh_scale_gap=1),
+            dict(type='Resize', scale=(224, 224), keep_ratio=False),
+            dict(type='Flip', flip_ratio=0.5),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs', 'label'])
+        ]),
+    target_train=dict(
+        type='MyVideoDataset',
+        ann_file=
+        '/media/data_8T/UCF-HMDB/UCF-HMDB_all/splits/list_ucf_all_train_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=64,
+                frame_interval=1,
+                num_clips=1),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 256)),
+            dict(
+                type='MultiScaleCrop',
+                input_size=224,
+                scales=(1, 0.8),
+                random_crop=True,
+                max_wh_scale_gap=1),
+            dict(type='Resize', scale=(224, 224), keep_ratio=False),
+            dict(type='Flip', flip_ratio=0.5),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs', 'label'])
+        ],
+        w_pseudo=False,
+        ps_filter_by=None,
+        pseudo_gt_dict=None,
+        ps_thresh=None,
+        data_dir='/media/data_8T'),
+    val=dict(
+        type='MyVideoDataset',
+        ann_file=
+        '/media/data_8T/UCF-HMDB/UCF-HMDB_all/splits/list_ucf_all_val_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=64,
+                frame_interval=1,
+                num_clips=1,
+                test_mode=True),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 256)),
+            dict(type='CenterCrop', crop_size=224),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs'])
+        ]),
+    test=dict(
+        type='MyVideoDataset',
+        ann_file=
+        '/media/data_8T/UCF-HMDB/UCF-HMDB_all/splits/list_ucf_all_val_split1.txt',
+        data_prefix=None,
+        pipeline=[
+            dict(type='DecordInit'),
+            dict(
+                type='SampleFrames',
+                clip_len=64,
+                frame_interval=1,
+                num_clips=1,
+                test_mode=True),
+            dict(type='DecordDecode'),
+            dict(type='Resize', scale=(-1, 256)),
+            dict(type='CenterCrop', crop_size=224),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_bgr=False),
+            dict(type='FormatShape', input_format='NCTHW'),
+            dict(type='Collect', keys=['imgs', 'label'], meta_keys=[]),
+            dict(type='ToTensor', keys=['imgs'])
+        ]),
+    target_train_for_inference=None)
+gpu_ids = [0]
+omnisource = False
+module_hooks = []
+
+2022-02-05 12:41:20,098 - mmaction - DEBUG - #################################################
+2022-02-05 12:41:20,099 - mmaction - DEBUG - Number of trainable parameters: 12874775
+2022-02-05 12:41:20,099 - mmaction - DEBUG - #################################################
+2022-02-05 12:41:30,017 - mmaction - DEBUG - Paramwise optimizer set up...
+2022-02-05 12:41:32,561 - mmaction - INFO - Start running, host: eicg@eicg, work_dir: /home/eicg/action_recognition_codes/domain_adaptation/mmaction2/tools/utils/work_dirs/InceptionI3d_2ucf_all_target_only_clip1x64_strid1_testclip1
+2022-02-05 12:41:32,562 - mmaction - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) PseudoTargetHook                   
+(NORMAL      ) EvalHook                           
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) PseudoTargetHook                   
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_val_iter:
+(NORMAL      ) PseudoTargetHook                   
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) PseudoTargetHook                   
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(NORMAL      ) PseudoTargetHook                   
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+after_run:
+(NORMAL      ) PseudoTargetHook                   
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+2022-02-05 12:41:32,564 - mmaction - INFO - workflow: [('train', 1)], max: 5 epochs
+2022-02-05 12:41:32,564 - mmaction - INFO - Checkpoints will be saved to /home/eicg/action_recognition_codes/domain_adaptation/mmaction2/tools/utils/work_dirs/InceptionI3d_2ucf_all_target_only_clip1x64_strid1_testclip1 by HardDiskBackend.
+2022-02-05 12:41:32,598 - mmaction - INFO - Before run: target train dataloader initialized! 
