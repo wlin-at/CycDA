@@ -1,8 +1,7 @@
-# CycDA
+#  CycDA: Unsupervised Cycle Domain Adaptation to Learn from Image to Video 
 
 ---
-PyTorch implementation  
-[[arXiv](https://arxiv.org/abs/2203.16244)]
+Official implementation of CycDA [[arXiv](https://arxiv.org/abs/2203.16244)]
 ---
 ## Requirements
 * Our experiments run on Python 3.6 and PyTorch 1.7. Other versions should work but are not tested. 
