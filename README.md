@@ -102,7 +102,6 @@ Thanks for citing our paper:
   year={2022},
   organization={Springer}
 }
-}
 ```
 
 ## Acknowledgements
