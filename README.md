@@ -1,4 +1,4 @@
-#  CycDA: Unsupervised Cycle Domain Adaptation to Learn from Image to Video 
+#  CycDA: Unsupervised Cycle Domain Adaptation to Learn from Image to Video (ECCV 2022)
 
 ---
 Official implementation of CycDA [[arXiv](https://arxiv.org/abs/2203.16244)]
