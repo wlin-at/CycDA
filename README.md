@@ -91,5 +91,19 @@ Here we release the codes for training in separate stages on BU101&rarr;UCF101. 
         ```
         
 ---
+## Citation
+Thanks for citing our paper:
+```bibtex
+@inproceedings{lin2022cycda,
+  title={CycDA: Unsupervised Cycle Domain Adaptation to Learn from Image to Video},
+  author={Lin, Wei and Kukleva, Anna and Sun, Kunyang and Possegger, Horst and Kuehne, Hilde and Bischof, Horst},
+  booktitle={Computer Vision--ECCV 2022: 17th European Conference, Tel Aviv, Israel, October 23--27, 2022, Proceedings, Part III},
+  pages={698--715},
+  year={2022},
+  organization={Springer}
+}
+}
+```
+
 ## Acknowledgements
 Some codes are adapted from [mmaction2](https://github.com/open-mmlab/mmaction2) and [pytorch-i3d](https://github.com/piergiaj/pytorch-i3d)
