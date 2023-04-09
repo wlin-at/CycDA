@@ -1,8 +1,8 @@
 #  CycDA: Unsupervised Cycle Domain Adaptation to Learn from Image to Video (ECCV 2022)
-
----
 Official implementation of CycDA [[arXiv](https://arxiv.org/abs/2203.16244)]
----
+
+## Abstract
+ Although action recognition has achieved impressive results over recent years, both collection and annotation of video training data are still time-consuming and cost intensive. Therefore, image-to-video adaptation has been proposed to exploit labeling-free web image source for adapting on unlabeled target videos. This poses two major challenges: (1) spatial domain shift between web images and video frames; (2) modality gap between image and video data. To address these challenges, we propose Cycle Domain Adaptation (CycDA), a cycle-based approach for unsupervised image-to-video domain adaptation. We leverage the joint spatial information in images and videos on the one hand and, on the other hand, train an independent spatio-temporal model to bridge the modality gap. We alternate between the spatial and spatio-temporal learning with knowledge transfer between the two in each cycle. We evaluate our approach on benchmark datasets for image-to-video as well as for mixed-source domain adaptation achieving state-of-the-art results and demonstrating the benefits of our cyclic adaptation.
 ## Requirements
 * Our experiments run on Python 3.6 and PyTorch 1.7. Other versions should work but are not tested. 
 * All dependencies can be installed using pip:  
